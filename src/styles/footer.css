@@ -1,8 +1,8 @@
 .footer-container{
     height:50px;
     width:100%;
-    /* position:absolute;
-    bottom:0; */
+    position:fixed;
+    bottom:0;
     background-color:var(--light-bg);
     margin-top:50px;
     color:var(--white);

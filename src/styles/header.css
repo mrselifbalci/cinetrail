@@ -82,3 +82,10 @@
 		transform: translateY(0);
 	}
 }
+
+@media(max-width:468px){
+    .search-results-item p{
+        font-size:0.75rem;
+    }
+
+}

@@ -11,7 +11,7 @@ function SearchResults({movie,setQuery}) {
     //    navigate(`/moviedetails/${movie.id}`)
        setQuery('')
     }
-
+ 
 
   return (
     <a className="search-results-item" onClick={seeDetails} href={`/moviedetails/${movie.id}`}>

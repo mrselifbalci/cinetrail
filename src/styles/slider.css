@@ -44,6 +44,9 @@
  }
  .rating{
   margin-top:10px;
+ } 
+ .slider-info h1,.slider-info p,.slider-info a{
+  margin-top:10px;
  }
  .see-details{
   margin-top:10px;
@@ -73,8 +76,21 @@
 }
 @media (max-width:468px){
   .slider-info{
-    height:30vh;
+    height:35vh;
+    width:80%;
   }
+  .slider-info h1{
+   font-size:1.5rem;
+   margin-top:10px;
+  }
+  .slider-info p{
+    font-size:0.75rem;
+    margin-top:10px;
+   }
+   .slider-info a{
+    font-size:0.75rem;
+    margin-top:10px;
+   }
   .slider-description{
     display: none;
   }

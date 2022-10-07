@@ -6,6 +6,8 @@ import MyFavorites from './pages/MyFavorites';
 import HomePage from './pages/HomePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Contact from './components/Contact';
+import About from './components/About';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 
 
@@ -23,6 +25,8 @@ function App() {
               <Route path="/" element={<HomePage baseUrl={baseUrl} apiKey={apiKey}/>}/>
               <Route path="/myfavorites" element={<MyFavorites baseUrl={baseUrl} apiKey={apiKey}/>}/>
               <Route path="/moviedetails/:movieid" element={<MovieDetails baseUrl={baseUrl} apiKey={apiKey}/>}/>
+              <Route path="/contactus" element={<Contact baseUrl={baseUrl} apiKey={apiKey}/>}/>
+              <Route path="/about" element={<About baseUrl={baseUrl} apiKey={apiKey}/>}/>
           </Routes>
           <Footer/>
       </BrowserRouter>
