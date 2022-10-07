@@ -1,0 +1,44 @@
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
+import Rating from './Rating'
+
+
+
+export default function MovieCard({data,imageUrl,width,height,cardStyle,radius,favoriteMovies,setFavoriteMovies}) {
+
+const [rating,setRating]=useState(Math.round(data?.vote_average/2))
+
+const imageStyle={
+  backgroundImage:`url("https://image.tmdb.org/t/p/w500/${imageUrl}")`, 
+  width:width,
+  height:height,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: 'cover',
+  backgroundPosition:'center', 
+  position:'relative',
+  borderRadius:radius,
+  boxShadow: cardStyle==="popular-card"?"0px 0px 10px 0px rgba(118,118,118,0.75)":null
+}
+
+  return (
+    <a  href={`/moviedetails/${data.id}`} className={cardStyle}>
+      <div style={imageStyle}>
+          <div className="movie-info-top">
+            <Rating currentRating={rating}/>
+          </div> 
+          <div className="movie-info-bottom"> 
+            <p>{data?.title}</p>
+            <p>Rating: {rating}</p>
+          </div>
+      </div> 
+      {
+        cardStyle==="top-rated-card" 
+        ? <div>
+            <p>{data?.title}</p>
+          </div>
+        : null
+      }
+    
+    </a>
+  )
+} 

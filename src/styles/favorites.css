@@ -1,0 +1,5 @@
+ .favorites-container{
+    min-height:100vh;
+    background-color: pink;
+    margin-top:var(--header-height);
+ }
