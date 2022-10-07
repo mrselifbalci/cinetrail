@@ -18,7 +18,6 @@ function App() {
 
 
   return (
-    
       <BrowserRouter>
           <Header baseUrl={baseUrl} apiKey={apiKey}/>
           <Routes> 
@@ -30,7 +29,6 @@ function App() {
           </Routes>
           <Footer/>
       </BrowserRouter>
-
     
   );
 } 

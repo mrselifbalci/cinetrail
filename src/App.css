@@ -6,6 +6,9 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+.body{
+  position:relative;
+}
 :root{
   --red: #e50916;
   --white:#fff; 
