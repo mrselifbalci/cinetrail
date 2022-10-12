@@ -65,7 +65,7 @@ useEffect(() => {
                       }
                 </div>
           </div>
-          <div className="top-rated-container">
+          <div className="top-rated-container"> 
                 <h3>Top Rated Movies</h3>
                 <div className="top-rated-cards-wrapper">
                     {

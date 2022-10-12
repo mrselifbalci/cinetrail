@@ -6,7 +6,7 @@ function Footer() {
     <div className="footer-container">
       <div className="link-container">
         <a href="/contactus">Contact Us</a>
-        <a href="/about">About</a>
+        <a href="/about">About</a> 
       </div>
       
       <p>All rights reserved.</p>

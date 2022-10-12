@@ -24,5 +24,12 @@ body{
   background-color: var(--dark-bg);
 }
 
+.about-container{
+  padding:20px;
+}
+.about-container p{
+  margin-top:20px;
+}
+
 
 

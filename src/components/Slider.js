@@ -34,7 +34,7 @@ function Slider({baseUrl,apiKey}) {
       })
       .catch(err=>console.log(err))
       
-  },[index]) 
+  },[]) 
   
   const handleRight=()=>{
     setIndex(index+1)
@@ -56,11 +56,11 @@ function Slider({baseUrl,apiKey}) {
        <MdKeyboardArrowRight className="right-arrow" onClick={handleRight}/>
        <MdKeyboardArrowLeft className="left-arrow" onClick={handleLeft}/>
        <div className="slider-info"> 
-          <h1>{upcomingMovies[index]?.title}</h1>
+          <h1>{upcomingMovies[index]?.title}</h1> 
           <p className="slider-description">{upcomingMovies[index]?.overview.slice(0,130)}...</p>
           <Genres component="slider" movie={upcomingMovies[index]?.genre_ids} baseUrl={baseUrl} apiKey={apiKey}/>
           <p>Release Date: {upcomingMovies[index]?.release_date}</p>
-          <Rating currentRating={currentRating}/>
+          <Rating currentRating={currentRating}/> 
           <a  href={`/moviedetails/${upcomingMovies[index]?.id}`} className="see-details">See Details</a>
        </div>
     </div>

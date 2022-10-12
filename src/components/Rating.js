@@ -7,13 +7,13 @@ function Rating({currentRating}) {
               <StarRatings
                 rating={currentRating}
                 numberOfStars={5}
-                name='rating'
+                name='rating' 
                 starDimension="15px"
                 starSpacing="1px"
                 starRatedColor="#e50916"
                 starEmptyColor="gray"
-              />
-          </div>
+              /> 
+    </div> 
   )
 }
 

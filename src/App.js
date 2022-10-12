@@ -22,7 +22,7 @@ function App() {
           <Header baseUrl={baseUrl} apiKey={apiKey}/>
           <Routes> 
               <Route path="/" element={<HomePage baseUrl={baseUrl} apiKey={apiKey}/>}/>
-              <Route path="/myfavorites" element={<MyFavorites baseUrl={baseUrl} apiKey={apiKey}/>}/>
+              {/* <Route path="/myfavorites" element={<MyFavorites baseUrl={baseUrl} apiKey={apiKey}/>}/> */}
               <Route path="/moviedetails/:movieid" element={<MovieDetails baseUrl={baseUrl} apiKey={apiKey}/>}/>
               <Route path="/contactus" element={<Contact baseUrl={baseUrl} apiKey={apiKey}/>}/>
               <Route path="/about" element={<About baseUrl={baseUrl} apiKey={apiKey}/>}/>
