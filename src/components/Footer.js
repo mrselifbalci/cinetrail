@@ -9,7 +9,7 @@ function Footer() {
         <a href="/about">About</a> 
       </div>
       
-      <p>All rights reserved.</p>
+      <p>All rights reserved.</p> 
     </div>
   )
 }

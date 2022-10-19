@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import Rating from './Rating'
+import '../styles/movies.css';
 
 
 
@@ -21,7 +22,7 @@ const imageStyle={
 }
 
   return (
-    <a  href={`/moviedetails/${data.id}`} className={cardStyle}>
+    <a  href={`/moviedetails/${data?.id}`} className={cardStyle}>
       <div style={imageStyle}>
           <div className="movie-info-top">
             <Rating currentRating={rating}/>
@@ -29,7 +30,7 @@ const imageStyle={
           <div className="movie-info-bottom"> 
             <p>{data?.title}</p>
             <p>Rating: {rating}</p>
-          </div>
+          </div>  
       </div> 
       {
         cardStyle==="top-rated-card" 

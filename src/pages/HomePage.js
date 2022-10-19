@@ -24,12 +24,12 @@ useEffect(() => {
   .then(res=>setTopRatedMovies(res.data.results.slice(0,10)))
   .catch(err=>console.log(err))
 
-  const saved = localStorage.getItem("favorite_movies")
-  if(!saved){
-    localStorage.setItem("favorite_movies",JSON.stringify([])) 
-  }else{
-    setFavoriteMovies(JSON.parse(saved))
-  }
+  // const saved = localStorage.getItem("favorite_movies")
+  // if(!saved){
+  //   localStorage.setItem("favorite_movies",JSON.stringify([])) 
+  // }else{
+  //   setFavoriteMovies(JSON.parse(saved))
+  // }
   
 }, [])
 

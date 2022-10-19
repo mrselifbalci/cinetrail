@@ -12,7 +12,8 @@ function Review({review}) {
   return (
         <div key={review.id} className="review"> 
             <div className="avatar-container">
-                <img className="avatar" src={imageError ? avatar : `https://image.tmdb.org/t/p/w500/${review.author_details.avatar_path}`} onError={() => setImageError(true)}/>
+                <img className="avatar" src={imageError ? avatar : `https://image.tmdb.org/t/p/w500/${review.author_details.avatar_path}`} 
+                     onError={() => setImageError(true)}/>
                 <p>{review.author}</p>
             </div>
             

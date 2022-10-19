@@ -1,7 +1,7 @@
 /* MOVIE-CARD */
 .popular-card{
     cursor:pointer;
-    padding:20px;
+    margin:20px;
 }
 .movie-info-top{
     visibility: hidden;

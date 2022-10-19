@@ -6,8 +6,8 @@ import MyFavorites from './pages/MyFavorites';
 import HomePage from './pages/HomePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Contact from './components/Contact';
-import About from './components/About';
+import Contact from './pages/Contact';
+import About from './pages/About';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 
 
@@ -17,7 +17,7 @@ function App() {
   const apiKey=process.env.REACT_APP_API_KEY;
 
 
-  return (
+  return ( 
       <BrowserRouter>
           <Header baseUrl={baseUrl} apiKey={apiKey}/>
           <Routes> 
