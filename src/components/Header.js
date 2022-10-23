@@ -1,12 +1,16 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import '../styles/header.css'
 import SearchResults from './SearchResults';
 import axios from 'axios';
+import {UserContext} from '../context/UserContext';
+import {useNavigate} from 'react-router-dom';
 
 
 export default function Header({baseUrl,apiKey}) {  
+ const navigate = useNavigate();
  const [query,setQuery]=useState('');
  const [searchResults,setSearchResults]=useState([]);
+ const {token,setToken,user}=useContext(UserContext) 
 
  const handleSearch=(e)=>{
     setQuery(e.target.value)
@@ -20,7 +24,14 @@ export default function Header({baseUrl,apiKey}) {
         }  
     }, 200);
  }
-  
+
+ const handleLogout=()=>{
+    localStorage.clear()
+    setToken('')
+ }
+
+
+ 
     return (
         <div className="header-container">
             <div className="logo-container"> 
@@ -41,6 +52,18 @@ export default function Header({baseUrl,apiKey}) {
                     : null
                 }
             
+            </div>
+            <div className="profile">
+                 {
+                    token 
+                    ? <div>
+                        <p>Welcome {user.username}</p>
+                        <p onClick={handleLogout}>Logout</p>
+                     </div>
+                    : <div>
+                        <p className="create-account" onClick={()=>navigate('/signup')}>Create an Account</p>
+                    </div>
+                 }
             </div>
 
         </div> 

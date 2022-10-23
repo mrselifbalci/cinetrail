@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import '../styles/movies.css';
 import {useParams} from 'react-router-dom'
 import ReactPlayer from 'react-player'
@@ -6,26 +6,48 @@ import axios from 'axios'
 import Rating from '../components/Rating'
 import Review from '../components/Review'
 import Genres from '../components/Genres';
+import {UserContext} from '../context/UserContext';
 
 
 
 
  
-export default function MovieDetails({baseUrl,apiKey}) {
+export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
+
     const {movieid} = useParams();
-    const [videoLink,setVideoLink]=useState('');
+    const [videoLink,setVideoLink]=useState(''); 
     const [movie,setMovie]=useState([]);
     const [currentRating,setCurrentRating]=useState(0);
     const [reviews,setReviews]=useState([]);
     const [totalReviews,setTotalReviews]=useState(0)
     const [reviewNumber,setReviewNumber]=useState(4)
+    const [added,setAdded]=useState(false)
+    const {user,setUser}=useContext(UserContext) 
+    const [loaded,setLoaded]=useState(false)
 
+    
+
+    useEffect(() => {
+        axios.post(`${serverUrl}/favoriteMovies/search`,{ 
+          user_id:user._id,
+          tmdb_id:movie.id
+        })
+        .then(res=>{
+          if(res.data===null){
+            setAdded(false)
+          }else{ 
+            setAdded(true)
+          }
+        })
+        .catch(err=>console.log(err))
+        .finally(()=>{setLoaded(true)})
+    }, [user,movie])
     
     
     useEffect(() => {  
           axios.get(`${baseUrl}/movie/${movieid}?api_key=${apiKey}`)
           .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             setMovie(res.data)
             setCurrentRating((res.data.vote_average)/2) 
           })
@@ -34,20 +56,43 @@ export default function MovieDetails({baseUrl,apiKey}) {
 
           axios.get(`${baseUrl}/movie/${movieid}/videos?api_key=${apiKey}&language=en-US`)
           .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
           const youtubeLink = res.data.results.filter(item=>item.site==="YouTube" && item.type==="Trailer")
           setVideoLink(youtubeLink[0].key)
           })
 
           axios.get(`${baseUrl}/movie/${movieid}/reviews?api_key=${apiKey}`)
           .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             setTotalReviews(res.data.total_results)
             setReviews(res.data.results)
           })
           .catch(err=>console.log(err))
+
+ 
     }, [])
 
+
+    const addToFavorites=()=>{
+      
+      axios.post(`${serverUrl}/favoriteMovies`,{
+        user_id:user._id,
+        movie_id:movie.id
+      })
+      .then(res=>{
+        setAdded(true)
+      })
+      .catch(err=>console.log(err))
+    }
+
+    const removeFromFavorites=()=>{
+        axios.delete(`${serverUrl}/favoriteMovies/${user._id}/${movie.id}`)
+        .then(res=>{
+          console.log(res.data)
+          setAdded(false)
+        })
+        .catch(err=>console.log(err))
+    }
   return ( 
     <div className="movie-details-container">
       {
@@ -72,11 +117,17 @@ export default function MovieDetails({baseUrl,apiKey}) {
     }
 
           <div className="details-container">
-            <div>
+            <div className="title-container">
               <h1>{movie.title}</h1>
-              <Rating currentRating={currentRating}/>
+              {
+                added && loaded
+                ? <span className="remove-btn" onClick={removeFromFavorites}>Remove from favorites.</span> 
+                : !added && loaded
+                ? <span className="add-btn" onClick={addToFavorites}>Add to favorites.</span>
+                : null
+              }
             </div>
-            
+            <Rating currentRating={currentRating}/>
             <div className="info-container">
                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="details-poster"/>
                <div className="movie-info">

@@ -69,8 +69,15 @@
     width:80px;
 }
 
-
-
+.profile{
+  color:var(--white);
+}
+.create-account{
+    background-color: var(--red);
+    padding:8px 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
 @keyframes input {
 	0% {
 		opacity: 0;
@@ -88,7 +95,7 @@
         font-size: 1.5rem;
     }
     .search-container{
-        width:60%;
+        width:60%; 
     }
     .search-results-item p{
         font-size:0.75rem;

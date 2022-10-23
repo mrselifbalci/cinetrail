@@ -6,11 +6,7 @@ function MyFavorites() {
     const [movies,setMovies]=useState([])
 
 useEffect(() => {
-    const saved = localStorage.getItem("favorite_movies")
-
-    if(saved){
-        setMovies(JSON.parse(saved))
-    }
+    
    
 }, [])
 
