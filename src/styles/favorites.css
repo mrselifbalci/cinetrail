@@ -7,4 +7,10 @@
     padding:50px;
  }
 
+ @media(max-width:600px){
+   .favorites-container{
+       margin-top:var(--header-height-mobile);
+   }
+}
+
  

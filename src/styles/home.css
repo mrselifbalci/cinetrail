@@ -59,4 +59,8 @@
         width:100%;
     }
 }
-
+@media(max-width:600px){
+    .homepage-container{
+        margin-top:var(--header-height-mobile);
+    }
+}

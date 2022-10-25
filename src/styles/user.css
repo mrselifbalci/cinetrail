@@ -69,3 +69,9 @@
         width:80%;
     }
 }
+
+@media(max-width:600px){
+    .signup-container{
+        margin-top:var(--header-height-mobile);
+    }
+ }

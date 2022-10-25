@@ -48,7 +48,7 @@ function App() {
                 <Route path="/signin" element={<SignIn serverUrl={serverUrl}/>}/>
             </Routes>
             <Footer/>
-            </UserContext.Provider>
+        </UserContext.Provider> 
       </BrowserRouter>
     
   );

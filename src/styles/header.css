@@ -126,7 +126,7 @@
 @media (max-width:600px){
     .header-container {
        flex-direction: column;
-       height:min-content;
+       height:var(--header-height-mobile);
        padding:10px 0;
        justify-content: space-around;
     }
