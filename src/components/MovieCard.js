@@ -3,7 +3,7 @@ import axios from 'axios';
 import Rating from './Rating'
 import '../styles/movies.css';
 
-
+ 
 
 export default function MovieCard({data,imageUrl,width,height,cardStyle,radius,favoriteMovies,setFavoriteMovies}) {
 
@@ -22,12 +22,12 @@ const imageStyle={
 }
 
   return (
-    <a  href={`/moviedetails/${data?.id}`} className={cardStyle}>
+    <a  href={data.id ? `/moviedetails/${data?.id}`:`/moviedetails/${data?.tmdb_id}`} className={cardStyle}>
       <div style={imageStyle}>
           <div className="movie-info-top">
             <Rating currentRating={rating}/>
           </div> 
-          <div className="movie-info-bottom"> 
+          <div className="movie-info-bottom">  
             <p>{data?.title}</p>
             <p>Rating: {rating}</p>
           </div>  

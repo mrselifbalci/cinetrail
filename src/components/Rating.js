@@ -5,7 +5,7 @@ function Rating({currentRating}) {
   return (
     <div className="rating">
               <StarRatings
-                rating={currentRating}
+                rating={currentRating} 
                 numberOfStars={5}
                 name='rating' 
                 starDimension="15px"

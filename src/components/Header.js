@@ -6,11 +6,13 @@ import {UserContext} from '../context/UserContext';
 import {useNavigate} from 'react-router-dom';
 
 
-export default function Header({baseUrl,apiKey}) {  
+
+export default function Header({baseUrl,apiKey}) { 
  const navigate = useNavigate();
  const [query,setQuery]=useState('');
  const [searchResults,setSearchResults]=useState([]);
  const {token,setToken,user}=useContext(UserContext) 
+ const [profileOptions,setProfileOptions]=useState(false)
 
  const handleSearch=(e)=>{
     setQuery(e.target.value)
@@ -53,12 +55,22 @@ export default function Header({baseUrl,apiKey}) {
                 }
             
             </div>
-            <div className="profile">
+            <div>
                  {
                     token 
-                    ? <div>
-                        <p>Welcome {user.username}</p>
-                        <p onClick={handleLogout}>Logout</p>
+                    ? <div className="profile-container">
+                        <img src={user.image_url} className="profile-img" onClick={()=>setProfileOptions(!profileOptions)}/>
+                        <p>Welcome {user.username}<span></span></p>
+                        {
+                            profileOptions
+                            ? <div className="profile-options">
+                                <a href="/myfavorites">My Favorites</a>
+                                <p class="logout" onClick={handleLogout}>Logout</p>
+                              </div>
+                            : null
+                        }
+                        
+                        
                      </div>
                     : <div>
                         <p className="create-account" onClick={()=>navigate('/signup')}>Create an Account</p>

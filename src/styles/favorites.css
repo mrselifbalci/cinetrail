@@ -1,5 +1,10 @@
  .favorites-container{
     min-height:100vh;
-    background-color: pink;
     margin-top:var(--header-height);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding:50px;
  }
+
+ 

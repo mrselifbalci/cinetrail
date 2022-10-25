@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color:white;
 }
 .header-container {
     height: var(--header-height);
@@ -69,13 +70,44 @@
     width:80px;
 }
 
-.profile{
-  color:var(--white);
+.profile-container{
+  color:white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    cursor:pointer;
+}
+.profile-options{
+    position: absolute;
+    top:var(--header-height);
+    right:0;
+    width:130px;
+    background-color: var(--dark-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:5px 0;
+}
+.profile-options a{
+    color:var(--white);
+    cursor:pointer;
 }
 .create-account{
     background-color: var(--red);
     padding:8px 16px;
     border-radius:8px;
+    cursor:pointer;
+}
+.logout{
+    color:var(--red);
+    font-size: 0.75rem;
     cursor:pointer;
 }
 @keyframes input {
@@ -90,6 +122,20 @@
 	}
 }
 
+
+@media (max-width:600px){
+    .header-container {
+       flex-direction: column;
+       height:min-content;
+       padding:10px 0;
+       justify-content: space-around;
+    }
+
+    .search-container, .profile-container{
+       margin-top:10px; 
+    }
+}
+
 @media(max-width:468px){
     .logo{
         font-size: 1.5rem;
@@ -100,5 +146,6 @@
     .search-results-item p{
         font-size:0.75rem;
     }
+
 
 }
