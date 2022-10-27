@@ -58,7 +58,7 @@ function Slider({baseUrl,apiKey}) {
        <div className="slider-info"> 
           <h1>{upcomingMovies[index]?.title}</h1> 
           <p className="slider-description">{upcomingMovies[index]?.overview.slice(0,130)}...</p>
-          <Genres component="slider" movie={upcomingMovies[index]?.genre_ids} baseUrl={baseUrl} apiKey={apiKey}/>
+          <Genres component="slider" movieGenres={upcomingMovies[index]?.genre_ids} baseUrl={baseUrl} apiKey={apiKey}/>
           <p>Release Date: {upcomingMovies[index]?.release_date}</p>
           <Rating currentRating={currentRating}/> 
           <a  href={`/moviedetails/${upcomingMovies[index]?.id}`} className="see-details">See Details</a>

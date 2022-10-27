@@ -9,7 +9,7 @@ function Review({review}) {
     const [imageError, setImageError] = useState(false);
 
     
-  return (
+  return ( 
         <div key={review.id} className="review"> 
             <div className="avatar-container">
                 <img className="avatar" src={imageError ? avatar : `https://image.tmdb.org/t/p/w500/${review.author_details.avatar_path}`} 

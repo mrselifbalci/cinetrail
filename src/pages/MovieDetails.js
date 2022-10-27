@@ -33,7 +33,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
           tmdb_id:movie.id
         })
         .then(res=>{
-          if(res.data===null){
+          if(res.data===null){ 
             setAdded(false)
           }else{ 
             setAdded(true)
@@ -116,7 +116,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
         }}><p>No Trailers Released Yet</p></div> 
     }
 
-          <div className="details-container">
+      <div className="details-container">
             <div className="title-container">
               <h1>{movie.title}</h1>
               {
@@ -151,10 +151,9 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
                     ? <p className="review-number" onClick={()=>setReviewNumber(3)}><em>End of reviews.</em></p>
                     : <p className="review-number" onClick={()=>setReviewNumber(reviewNumber+3)}><em>Read more reviews</em></p>
                 }
-
                 
             </div>
-          </div>
+      </div>
 
     </div>
 
