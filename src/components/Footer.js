@@ -1,17 +1,15 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import '../styles/footer.css';
+import {ThemeContext} from '../contexts/ThemeContext';
 
 function Footer() {
+  const {darkMode,setDarkMode}=useContext(ThemeContext)
   return (
-    <div className="footer-container">
-      <div className="link-container">
-        <a href="/contactus">Contact Us</a>
-        <a href="/about">About</a> 
-      </div>
-      
+    <div className="footer-container"> 
+      <button onClick={()=>setDarkMode(!darkMode)}>Light Mode</button>
       <p>All rights reserved.</p> 
     </div>
   )
 }
-
-export default Footer
+ 
+export default Footer 

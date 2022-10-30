@@ -2,7 +2,7 @@ import React,{useState,useEffect,useContext} from 'react'
 import {useNavigate} from 'react-router-dom';
 import '../styles/user.css';
 import axios from 'axios';
-import {UserContext} from '../context/UserContext';
+import {UserContext} from '../contexts/UserContext';
 
 function SignIn({serverUrl}) {
     const navigate = useNavigate();
@@ -17,7 +17,6 @@ function SignIn({serverUrl}) {
         e.preventDefault();
         axios.post(`${serverUrl}/users/login`,{email,password})
         .then(res=>{
-            console.log(res.data)
             setUser(res.data)
             setToken(res.data.token)
             localStorage.setItem('token',res.data.token)
@@ -25,6 +24,7 @@ function SignIn({serverUrl}) {
             navigate('/')
         })
         .catch(err=>console.log(err))
+        
     }
   return (
     <div className="signup-container">

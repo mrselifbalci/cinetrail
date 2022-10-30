@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import Rating from './Rating'
 import '../styles/movies.css';
+import {Link} from 'react-router-dom';
 
  
 
@@ -22,7 +23,7 @@ const imageStyle={
 }
 
   return (
-    <a  href={data.id ? `/moviedetails/${data?.id}`:`/moviedetails/${data?.tmdb_id}`} className={cardStyle}>
+    <Link  to={data.id ? `/moviedetails/${data?.id}`:`/moviedetails/${data?.tmdb_id}`} className={cardStyle}>
       <div style={imageStyle}>
           <div className="movie-info-top">
             <Rating currentRating={rating}/>
@@ -40,6 +41,6 @@ const imageStyle={
         : null
       }
     
-    </a>
+    </Link>
   )
 } 

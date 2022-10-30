@@ -9,9 +9,9 @@ function SearchResults({movie,setQuery}) {
 
   return (
     <a className="search-results-item" onClick={()=>setQuery('')} href={`/moviedetails/${movie.id}`}>
-           <img className="result-img" src={imageError ? noImage :`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} 
+        <img className="result-img" src={imageError ? noImage :`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} 
            onError={() => setImageError(true)}/>
-           <p>{movie.title}</p> 
+        <p>{movie.title}</p> 
     </a>
   )
 }

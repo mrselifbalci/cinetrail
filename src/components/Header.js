@@ -2,17 +2,19 @@ import React,{useEffect,useState,useContext} from 'react'
 import '../styles/header.css'
 import SearchResults from './SearchResults';
 import axios from 'axios';
-import {UserContext} from '../context/UserContext';
-import {useNavigate} from 'react-router-dom';
+import {UserContext} from '../contexts/UserContext';
+import {useNavigate,Link} from 'react-router-dom';
+import {ThemeContext} from '../contexts/ThemeContext';
 
 
-
-export default function Header({baseUrl,apiKey}) { 
+ 
+export default function Header({baseUrl,apiKey}) {  
  const navigate = useNavigate();
  const [query,setQuery]=useState('');
- const [searchResults,setSearchResults]=useState([]);
+ const [searchResults,setSearchResults]=useState([]); 
  const {token,setToken,user}=useContext(UserContext) 
  const [profileOptions,setProfileOptions]=useState(false)
+ const {darkMode,setDarkMode}=useContext(ThemeContext)
 
  const handleSearch=(e)=>{
     setQuery(e.target.value)
@@ -30,12 +32,13 @@ export default function Header({baseUrl,apiKey}) {
  const handleLogout=()=>{
     localStorage.clear()
     setToken('')
- }
+    navigate('/')
+ } 
 
 
  
     return (
-        <div className="header-container">
+        <div className={darkMode ? "header-container" : "header-container header-light"}>
             <div className="logo-container"> 
                   <a href="/" className="logo"><p>CineTrail</p></a>
             </div>
@@ -64,8 +67,9 @@ export default function Header({baseUrl,apiKey}) {
                         {
                             profileOptions
                             ? <div className="profile-options">
+                                {/* <Link to="/myfavorites">My Favorites</Link> */}
                                 <a href="/myfavorites">My Favorites</a>
-                                <p class="logout" onClick={handleLogout}>Logout</p>
+                                <p className="logout" onClick={handleLogout}>Logout</p>
                               </div>
                             : null
                         }

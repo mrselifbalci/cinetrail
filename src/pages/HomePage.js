@@ -1,9 +1,10 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import { useScrollTo } from 'react-use-window-scroll';
 import MovieCard from '../components/MovieCard';
 import Slider from '../components/Slider';
 import '../styles/home.css';
 import axios from 'axios';
+import {ThemeContext} from '../contexts/ThemeContext';
 
 function HomePage({upcomingMovies,baseUrl,apiKey}) {
   const scrollTo = useScrollTo();
@@ -12,26 +13,19 @@ function HomePage({upcomingMovies,baseUrl,apiKey}) {
   const [page,setPage]=useState(1);
   const pageNumbers=[1,2,3,4,5,6,7,8,9,10];
   const [favoriteMovies,setFavoriteMovies]=useState([]) 
-
+  const {darkMode,setDarkMode}=useContext(ThemeContext)
+ 
 useEffect(() => {
   axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}&append_to_response=videos&language=en-US&page=${page}`)
   .then(res=>setPopularMovies(res.data.results))
   .catch(err=>console.log(err))
-}, [page])
+}, [page]) 
 
 useEffect(() => {
   axios.get(`${baseUrl}/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`)
   .then(res=>setTopRatedMovies(res.data.results.slice(0,10)))
   .catch(err=>console.log(err))
-
-  // const saved = localStorage.getItem("favorite_movies")
-  // if(!saved){
-  //   localStorage.setItem("favorite_movies",JSON.stringify([])) 
-  // }else{
-  //   setFavoriteMovies(JSON.parse(saved))
-  // }
-  
-}, [])
+}, []) 
 
 
  const handlePage=(page)=>{
@@ -40,7 +34,7 @@ useEffect(() => {
  }
   
   return (
-    <div className="homepage-container">
+    <div className={darkMode ? "homepage-container" : "homepage-container home-light"}>
        <Slider baseUrl={baseUrl} apiKey={apiKey}/>
        <div className="movies-wrapper">
           <div className="popular-container">
@@ -62,7 +56,7 @@ useEffect(() => {
                             className={item===page ? "current-page":null}
                             key={item} onClick={()=>handlePage(item)}>{item}</p>
                           })
-                      }
+                      } 
                 </div>
           </div>
           <div className="top-rated-container"> 

@@ -8,7 +8,7 @@ export default function Genres({component,movieGenres,baseUrl,apiKey}) {
         .then(res=>setAllGenres(res.data.genres))
         .catch(err=>console.log(err))
     }, [])
-    // console.log(component,movie.genres)
+
   return (
     <div className="genre-container">
               <p>Genres:&nbsp;</p>

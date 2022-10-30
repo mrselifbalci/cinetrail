@@ -1,14 +1,17 @@
 .homepage-container{
     margin-top:var(--header-height);
     color:var(--white);
-    min-height:100vh;
+    min-height:100vh; 
+}
+.home-light{
+    background-color: var(--light-bg);
 }
 .movies-wrapper{
     margin-top:20px;
     display: flex;
     padding:20px;
 }
-.popular-container{
+.popular-container{ 
     display: flex;
     flex-direction:column;
 }
@@ -45,7 +48,7 @@
     flex-wrap: wrap;  
 }
 
-
+ 
 @media(max-width:768px){
     .movies-wrapper{
        flex-direction: column;

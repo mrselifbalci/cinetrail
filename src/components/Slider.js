@@ -30,11 +30,11 @@ function Slider({baseUrl,apiKey}) {
       axios.get(`${baseUrl}/movie/upcoming?api_key=${apiKey}&append_to_response=videos&language=en-US&page=1`)
       .then(res=>{
         setUpcomingMovies(res.data.results)
-        setCurrentRating(Math.round((res.data.results[index].vote_average)/2))
+        setCurrentRating((res.data.results[index].vote_average)/2)
       })
       .catch(err=>console.log(err))
       
-  },[]) 
+  },[index]) 
   
   const handleRight=()=>{
     setIndex(index+1)
@@ -67,4 +67,4 @@ function Slider({baseUrl,apiKey}) {
   )
 }
 
-export default Slider
+export default Slider 

@@ -1,7 +1,7 @@
 import React,{useState,useEffect,useContext} from 'react'
 import '../styles/user.css';
 import axios from 'axios';
-import {UserContext} from '../context/UserContext';
+import {UserContext} from '../contexts/UserContext';
 
 
 function SignUp({serverUrl}) {

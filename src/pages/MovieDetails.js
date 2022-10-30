@@ -6,7 +6,7 @@ import axios from 'axios'
 import Rating from '../components/Rating'
 import Review from '../components/Review'
 import Genres from '../components/Genres';
-import {UserContext} from '../context/UserContext';
+import {UserContext} from '../contexts/UserContext';
 
 
 
