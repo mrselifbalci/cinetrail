@@ -24,15 +24,7 @@ function App() {
   // const [token,setToken]=useState('')
 
 
-  // useEffect(() => {
-  //  const user= localStorage.getItem('userInfo')
-  //  if(!user){
-  //   localStorage.setItem('userInfo','')
-  //  }else{
-  //   setUser(JSON.parse(localStorage.getItem('userInfo')))
-  //  }
-  //  setToken(localStorage.getItem('token'))
-  // }, [])
+
   
 
   return ( 
@@ -47,7 +39,7 @@ function App() {
                   <Route path="/signin" element={<SignIn serverUrl={serverUrl}/>}/>
               </Routes>
               <Footer/>
-          </CombinedContextProvider>
+          </CombinedContextProvider> 
       </BrowserRouter>
     
   );

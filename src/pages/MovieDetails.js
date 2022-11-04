@@ -7,6 +7,7 @@ import Rating from '../components/Rating'
 import Review from '../components/Review'
 import Genres from '../components/Genres';
 import {UserContext} from '../contexts/UserContext';
+import {ThemeContext} from '../contexts/ThemeContext';
 
 
 
@@ -24,6 +25,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
     const [added,setAdded]=useState(false)
     const {user,setUser}=useContext(UserContext) 
     const [loaded,setLoaded]=useState(false)
+    const {darkMode,setDarkMode}=useContext(ThemeContext)
 
     
 
@@ -93,8 +95,11 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
         })
         .catch(err=>console.log(err))
     }
+
+
+
   return ( 
-    <div className="movie-details-container">
+    <div className={darkMode ?"movie-details-container" : "movie-details-container details-light"}>
       {
         videoLink ? 
         <div className="trailer-container">
@@ -116,7 +121,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
         }}><p>No Trailers Released Yet</p></div> 
     }
 
-      <div className="details-container">
+      <div className={darkMode ?"details-container" :"details-container details-light" }>
             <div className="title-container">
               <h1>{movie.title}</h1>
               {

@@ -1,19 +1,20 @@
 import React,{useState,useEffect,useContext} from 'react'
-import {useNavigate} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/user.css';
 import axios from 'axios';
 import {UserContext} from '../contexts/UserContext';
+import {ThemeContext} from '../contexts/ThemeContext';
 
 function SignIn({serverUrl}) {
     const navigate = useNavigate();
     const {user,setUser,token,setToken}=useContext(UserContext) 
+    const {darkMode,setDarkMode}=useContext(ThemeContext)  
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
-    const [username,setUsername]=useState('');
     const [success,setSuccess]=useState(false)
 
 
-    const handleSignIn=(e)=>{
+    const handleSignIn=(e)=>{ 
         e.preventDefault();
         axios.post(`${serverUrl}/users/login`,{email,password})
         .then(res=>{
@@ -23,24 +24,23 @@ function SignIn({serverUrl}) {
             localStorage.setItem('userInfo',JSON.stringify(res.data))
             navigate('/')
         })
-        .catch(err=>console.log(err))
-        
-    }
+        .catch(err=>console.log(err))   
+    } 
   return (
-    <div className="signup-container">
+    <div className={darkMode ? "signup-container" : "signup-container signup-light"}>
         {
             token
             ? <p>You are already loggedin.</p>
-            : <form className="signup-form" onSubmit={handleSignIn}>
+            : <form className="signup-form" onSubmit={handleSignIn}> 
             <div className="title-container">
                 <h1>Sign In</h1>
-                <p>Please fill in this form to create an account.</p>
-            </div>
-            <div className="input-wrapper"> 
+                <p>Please fill in this form to login.</p>
+            </div>  
+            <div className={darkMode ? "input-wrapper" :"input-wrapper input-wrapper-light"}> 
                 <label htmlFor="email">Email</label>
                 <input value={email} type="email" placeholder="Enter Email" name="email" required onChange={(e)=>setEmail(e.target.value)}/>
             </div>
-            <div className="input-wrapper">
+            <div className={darkMode ? "input-wrapper" :"input-wrapper input-wrapper-light"}>
                 <label htmlFor="psw">Password</label>
                 <input value={password} type="password" placeholder="Enter Password" name="psw" required onChange={(e)=>setPassword(e.target.value)}/>
             </div>
@@ -51,7 +51,7 @@ function SignIn({serverUrl}) {
             {
                 success 
                 ? null
-                : <p className="signin-message">Don't have an account? <a href="/signup">Signup</a></p>
+                : <p className="signin-message">Don't have an account? <Link to="/signup">Signup</Link></p>
             }
         </form>
         } 

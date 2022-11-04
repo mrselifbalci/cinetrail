@@ -6,8 +6,8 @@ export default function UserContextProvider (props){
     const [user,setUser]=useState('');
     const [token,setToken]=useState('')
 
-
-  useEffect(() => {
+ 
+  useEffect(() => { 
     const user= localStorage.getItem('userInfo') 
     if(!user){
      localStorage.setItem('userInfo','')

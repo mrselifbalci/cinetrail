@@ -44,6 +44,13 @@
   outline:none;
   border-radius: 0;
 }
+.input-light{
+background-color: var(--footer-bg);
+color:var(--white);
+}
+.input-light::placeholder{
+    color:var(--white);
+}
 .search-results-container{
     background-color: gray;
     position:absolute;
@@ -80,7 +87,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.profile-light{
+    color:black;
+}
 .profile-img{
     width:30px;
     height:30px;
@@ -107,6 +116,8 @@
     padding:8px 16px;
     border-radius:8px;
     cursor:pointer;
+    border:none;
+    color:var(--white);
 }
 .logout{
     color:var(--red);

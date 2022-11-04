@@ -7,7 +7,7 @@ import {useNavigate,Link} from 'react-router-dom';
 import {ThemeContext} from '../contexts/ThemeContext';
 
 
- 
+  
 export default function Header({baseUrl,apiKey}) {  
  const navigate = useNavigate();
  const [query,setQuery]=useState('');
@@ -27,7 +27,7 @@ export default function Header({baseUrl,apiKey}) {
             .catch(err=>console.log(err));
         }  
     }, 200);
- }
+ } 
 
  const handleLogout=()=>{
     localStorage.clear()
@@ -35,15 +35,22 @@ export default function Header({baseUrl,apiKey}) {
     navigate('/')
  } 
 
-
  
+  
     return (
         <div className={darkMode ? "header-container" : "header-container header-light"}>
             <div className="logo-container"> 
-                  <a href="/" className="logo"><p>CineTrail</p></a>
+                  <Link to="/" className="logo"><p>CineTrail</p></Link>
             </div>
-            <div className="search-container">
-                <input onChange={handleSearch} className={query ?"search-input input-active":"search-input" } placeholder="Search movies..."/>
+            <div className="search-container" >
+                <input onChange={handleSearch} className={ 
+                    query && darkMode 
+                    ? "search-input input-active"
+                    : query && !darkMode 
+                    ? "search-input input-active input-light"
+                    : !query && !darkMode
+                    ?  "search-input input-light"
+                    : "search-input"} placeholder="Search movies..."/>
                 {
                     query!==''
                     ? <div className="search-results-container">
@@ -61,23 +68,23 @@ export default function Header({baseUrl,apiKey}) {
             <div>
                  {
                     token 
-                    ? <div className="profile-container">
+                    ? <div className={darkMode ?"profile-container" : "profile-container profile-light" }>
                         <img src={user.image_url} className="profile-img" onClick={()=>setProfileOptions(!profileOptions)}/>
                         <p>Welcome {user.username}<span></span></p>
                         {
                             profileOptions
                             ? <div className="profile-options">
-                                {/* <Link to="/myfavorites">My Favorites</Link> */}
-                                <a href="/myfavorites">My Favorites</a>
+                                <Link to="/myfavorites">My Favorites</Link>
+                                {/* <a href="/myfavorites">My Favorites</a> */}
                                 <p className="logout" onClick={handleLogout}>Logout</p>
                               </div>
                             : null
-                        }
+                        } 
                         
                         
                      </div>
                     : <div>
-                        <p className="create-account" onClick={()=>navigate('/signup')}>Create an Account</p>
+                        <button className="create-account" onClick={()=>navigate('/signup')}>Create an Account</button>
                     </div>
                  }
             </div>
