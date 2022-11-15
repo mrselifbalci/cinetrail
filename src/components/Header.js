@@ -36,6 +36,10 @@ export default function Header({baseUrl,apiKey}) {
     navigate('/')
  } 
 
+ const handleTheme=()=>{
+    setDarkMode(!darkMode)
+    localStorage.setItem('darkMode',!darkMode)
+ }
  
   
     return (
@@ -72,10 +76,10 @@ export default function Header({baseUrl,apiKey}) {
                             darkMode
                             ? <div className="theme-buttons">
                                 <MdOutlineLightMode className="theme-icon theme-icon-active"/>
-                                <MdOutlineDarkMode onClick={()=>setDarkMode(!darkMode)} className="theme-icon theme-icon"/>
+                                <MdOutlineDarkMode onClick={handleTheme} className="theme-icon theme-icon"/>
                             </div>
                             : <div className="theme-buttons">
-                                <MdOutlineLightMode onClick={()=>setDarkMode(!darkMode)} className="theme-icon theme-icon"/>
+                                <MdOutlineLightMode onClick={handleTheme} className="theme-icon theme-icon"/>
                                 <MdOutlineDarkMode className="theme-icon theme-icon-active"/>
                             </div>
                         }

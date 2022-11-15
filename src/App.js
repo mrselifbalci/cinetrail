@@ -38,7 +38,7 @@ function App() {
                   <Route path="/signup" element={<SignUp serverUrl={serverUrl}/>}/>
                   <Route path="/signin" element={<SignIn serverUrl={serverUrl}/>}/>
               </Routes>
-              <Footer/>
+              <Footer/> 
           </CombinedContextProvider> 
       </BrowserRouter>
     

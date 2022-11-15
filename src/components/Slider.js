@@ -48,7 +48,7 @@ function Slider({baseUrl,apiKey}) {
         setIndex(upcomingMovies.length-1)
     } 
   }
-
+ 
   return (  
 
     <div className="slider-container" style={sliderStyle}> 
