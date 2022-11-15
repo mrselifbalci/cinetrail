@@ -23,7 +23,7 @@ function App() {
   // const [user,setUser]=useState('');
   // const [token,setToken]=useState('')
 
-
+ 
 
   
 
@@ -33,7 +33,7 @@ function App() {
               <Header baseUrl={baseUrl} apiKey={apiKey}/>
               <Routes> 
                   <Route path="/" element={<HomePage baseUrl={baseUrl} apiKey={apiKey}/>}/>
-                  <Route path="/myfavorites" element={<MyFavorites baseUrl={baseUrl} apiKey={apiKey}/>}/>
+                  <Route path="/myfavorites" element={<MyFavorites serverUrl={serverUrl} baseUrl={baseUrl} apiKey={apiKey}/>}/>
                   <Route path="/moviedetails/:movieid" element={<MovieDetails serverUrl={serverUrl} baseUrl={baseUrl} apiKey={apiKey}/>}/>
                   <Route path="/signup" element={<SignUp serverUrl={serverUrl}/>}/>
                   <Route path="/signin" element={<SignIn serverUrl={serverUrl}/>}/>

@@ -76,7 +76,6 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
 
 
     const addToFavorites=()=>{
-      
       axios.post(`${serverUrl}/favoriteMovies`,{
         user_id:user._id,
         movie_id:movie.id

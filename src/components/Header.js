@@ -5,6 +5,7 @@ import axios from 'axios';
 import {UserContext} from '../contexts/UserContext';
 import {useNavigate,Link} from 'react-router-dom';
 import {ThemeContext} from '../contexts/ThemeContext';
+import {MdOutlineDarkMode,MdOutlineLightMode} from "react-icons/md";
 
 
   
@@ -65,7 +66,20 @@ export default function Header({baseUrl,apiKey}) {
                 }
             
             </div>
-            <div>
+            <div className="header-buttons-container">
+                <div className="theme-button-container">
+                        {
+                            darkMode
+                            ? <div className="theme-buttons">
+                                <MdOutlineLightMode className="theme-icon theme-icon-active"/>
+                                <MdOutlineDarkMode onClick={()=>setDarkMode(!darkMode)} className="theme-icon theme-icon"/>
+                            </div>
+                            : <div className="theme-buttons">
+                                <MdOutlineLightMode onClick={()=>setDarkMode(!darkMode)} className="theme-icon theme-icon"/>
+                                <MdOutlineDarkMode className="theme-icon theme-icon-active"/>
+                            </div>
+                        }
+                </div>
                  {
                     token 
                     ? <div className={darkMode ?"profile-container" : "profile-container profile-light" }>

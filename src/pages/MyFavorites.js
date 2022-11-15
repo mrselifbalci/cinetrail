@@ -4,12 +4,12 @@ import '../styles/favorites.css';
 import axios from 'axios';
 import {UserContext} from '../contexts/UserContext';
 
-function MyFavorites() {
+function MyFavorites({serverUrl}) {
     const [movies,setMovies]=useState([])
     const {user,token}=useContext(UserContext) 
 
 useEffect(() => { 
-     axios.get(`https://cinetrail-server.herokuapp.com/favoriteMovies/user/${user?._id}`)
+     axios.get(`${serverUrl}/favoriteMovies/user/${user?._id}`)
      .then(res=>{
       console.log(res.data)
       setMovies(res.data.favorites)
@@ -19,9 +19,9 @@ useEffect(() => {
 }, [user])
 
 
-
-  return (
-    <div className="favorites-container"> 
+ 
+  return ( 
+    <div className="favorites-container">  
         {
           token
            ? movies.map(item=>{

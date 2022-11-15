@@ -29,7 +29,7 @@ function SignUp({serverUrl}) {
 
     const handleSignUp=(e)=>{
         e.preventDefault();
-        setLoading(true)
+        setLoading(true) 
         axios.post(`${serverUrl}/users/signup`,{email,password,username})
         .then(res=>{
             console.log(res.data)
