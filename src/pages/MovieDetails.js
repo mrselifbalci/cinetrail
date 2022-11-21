@@ -58,9 +58,9 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
 
           axios.get(`${baseUrl}/movie/${movieid}/videos?api_key=${apiKey}&language=en-US`)
           .then(res=>{
-            // console.log(res.data)
+            console.log(res.data)
           const youtubeLink = res.data.results.filter(item=>item.site==="YouTube" && item.type==="Trailer")
-          setVideoLink(youtubeLink[0].key)
+          setVideoLink(youtubeLink[0]?.key)
           })
 
           axios.get(`${baseUrl}/movie/${movieid}/reviews?api_key=${apiKey}`)
@@ -72,7 +72,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
           .catch(err=>console.log(err))
 
  
-    }, [])
+    }, [movieid])
 
 
     const addToFavorites=()=>{

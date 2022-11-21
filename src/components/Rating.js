@@ -16,5 +16,5 @@ function Rating({currentRating}) {
     </div> 
   )
 }
-
+ 
 export default Rating

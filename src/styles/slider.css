@@ -27,7 +27,7 @@
  }
  .slider-info{
    height:35vh;
-   position:absolute;
+   position:absolute; 
    bottom:0;
    width:50%;
    z-index:1;

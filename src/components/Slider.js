@@ -15,19 +15,19 @@ function Slider({baseUrl,apiKey}) {
 
 
     const sliderStyle={
-        backgroundImage:`url("https://image.tmdb.org/t/p/original/${upcomingMovies && upcomingMovies[index]?.backdrop_path}")`,
+        backgroundImage:`url("https://image.tmdb.org/t/p/original/${upcomingMovies[index]?.backdrop_path}")`,
         height: "60vh",
         width:'100%',
         backgroundRepeat: "no-repeat",
         backgroundSize: 'cover',
         backgroundPosition:'center',
-        position:'relative',
+        position:'relative', 
         zIndex:0,
         animation: 'myAnim 3s ease 0s 1 normal forwards'
     }
   
  useEffect(() => {
-      axios.get(`${baseUrl}/movie/upcoming?api_key=${apiKey}&append_to_response=videos&language=en-US&page=1`)
+      axios.get(`${baseUrl}/movie/upcoming?api_key=${apiKey}&page=1`)
       .then(res=>{
         setUpcomingMovies(res.data.results)
         setCurrentRating((res.data.results[index].vote_average)/2)
@@ -51,7 +51,7 @@ function Slider({baseUrl,apiKey}) {
  
   return (  
 
-    <div className="slider-container" style={sliderStyle}> 
+    <div  style={sliderStyle}> 
        <div className="slider-overlay"></div>
        <MdKeyboardArrowRight className="right-arrow" onClick={handleRight}/>
        <MdKeyboardArrowLeft className="left-arrow" onClick={handleLeft}/>

@@ -6,7 +6,7 @@ import '../styles/home.css';
 import axios from 'axios';
 import {ThemeContext} from '../contexts/ThemeContext';
 
-function HomePage({upcomingMovies,baseUrl,apiKey}) {
+function HomePage({baseUrl,apiKey}) {
   const scrollTo = useScrollTo();
   const [popularMovies,setPopularMovies]=useState([])
   const [topRatedMovies,setTopRatedMovies]=useState([])
@@ -16,7 +16,7 @@ function HomePage({upcomingMovies,baseUrl,apiKey}) {
   const {darkMode,setDarkMode}=useContext(ThemeContext)
  
 useEffect(() => {
-  axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}&append_to_response=videos&language=en-US&page=${page}`)
+  axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}&page=${page}`)
   .then(res=>setPopularMovies(res.data.results))
   .catch(err=>console.log(err))
 }, [page]) 
@@ -32,7 +32,7 @@ useEffect(() => {
   setPage(page)
   // scrollTo({ top: 0, left: 0, behavior: 'smooth' })
  }
-  
+   
   return (
     <div className={darkMode ? "homepage-container" : "homepage-container home-light"}>
        <Slider baseUrl={baseUrl} apiKey={apiKey}/>

@@ -7,48 +7,50 @@ import {useNavigate,Link} from 'react-router-dom';
 import {ThemeContext} from '../contexts/ThemeContext';
 import {MdOutlineDarkMode,MdOutlineLightMode} from "react-icons/md";
 
-
+ 
   
-export default function Header({baseUrl,apiKey}) {  
+export default function Header({baseUrl,apiKey}) { 
+
  const navigate = useNavigate();
  const [query,setQuery]=useState('');
  const [searchResults,setSearchResults]=useState([]); 
- const {token,setToken,user}=useContext(UserContext) 
+ const {token,setToken,user,setUser}=useContext(UserContext) 
  const [profileOptions,setProfileOptions]=useState(false)
  const {darkMode,setDarkMode}=useContext(ThemeContext)
 
- const handleSearch=(e)=>{
-    setQuery(e.target.value)
-    setTimeout(() => {
-        if(query.trim().length>0){
-            axios.get(`${baseUrl}/search/movie?api_key=${apiKey}&query=${query}`)
-            .then(res=>{
-            setSearchResults(res.data.results)
-            })
-            .catch(err=>console.log(err));
-        }  
-    }, 200);
- } 
+
+
+ useEffect(() => {
+    if(query.trim().length>0){
+        axios.get(`${baseUrl}/search/movie?api_key=${apiKey}&query=${query}`)
+        .then(res=>{
+        setSearchResults(res.data.results)
+        })
+        .catch(err=>console.log(err));
+    }  
+ }, [query])
+ 
 
  const handleLogout=()=>{
     localStorage.clear()
     setToken('')
-    navigate('/')
+    navigate('/') 
  } 
 
  const handleTheme=()=>{
     setDarkMode(!darkMode)
-    localStorage.setItem('darkMode',!darkMode)
+    localStorage.setItem('darkMode',JSON.stringify(!darkMode))
  }
  
   
     return (
         <div className={darkMode ? "header-container" : "header-container header-light"}>
-            <div className="logo-container"> 
-                  <Link to="/" className="logo"><p>CineTrail</p></Link>
-            </div>
+            <Link to="/" className="logo">CineTrail</Link>
             <div className="search-container" >
-                <input onChange={handleSearch} className={ 
+                <input  
+                 onChange={(e)=>setQuery(e.target.value)} 
+                // onChange={handleSearch}
+                 className={ 
                     query && darkMode 
                     ? "search-input input-active"
                     : query && !darkMode 
@@ -56,6 +58,7 @@ export default function Header({baseUrl,apiKey}) {
                     : !query && !darkMode
                     ?  "search-input input-light"
                     : "search-input"} placeholder="Search movies..."/>
+
                 {
                     query!==''
                     ? <div className="search-results-container">
@@ -64,7 +67,6 @@ export default function Header({baseUrl,apiKey}) {
                               return  <SearchResults setQuery={setQuery} key={movie.id} movie={movie}/>
                             })
                         }
-                        
                     </div>
                     : null
                 }
@@ -75,12 +77,12 @@ export default function Header({baseUrl,apiKey}) {
                         {
                             darkMode
                             ? <div className="theme-buttons">
-                                <MdOutlineLightMode className="theme-icon theme-icon-active"/>
-                                <MdOutlineDarkMode onClick={handleTheme} className="theme-icon theme-icon"/>
+                                <MdOutlineLightMode onClick={handleTheme} className="theme-icon"/>
+                                <MdOutlineDarkMode  className="theme-icon theme-icon-active"/>
                             </div>
                             : <div className="theme-buttons">
-                                <MdOutlineLightMode onClick={handleTheme} className="theme-icon theme-icon"/>
-                                <MdOutlineDarkMode className="theme-icon theme-icon-active"/>
+                                <MdOutlineLightMode  className="theme-icon theme-icon-active"/>
+                                <MdOutlineDarkMode onClick={handleTheme} className="theme-icon"/>
                             </div>
                         }
                 </div>
