@@ -8,8 +8,8 @@ import {ThemeContext} from '../contexts/ThemeContext';
 import {MdOutlineDarkMode,MdOutlineLightMode} from "react-icons/md";
 
  
-  
-export default function Header({baseUrl,apiKey}) { 
+   
+export default function Header({baseUrl,apiKey}) {  
 
  const navigate = useNavigate();
  const [query,setQuery]=useState('');
@@ -39,7 +39,10 @@ export default function Header({baseUrl,apiKey}) {
 
  const handleTheme=()=>{
     setDarkMode(!darkMode)
-    localStorage.setItem('darkMode',JSON.stringify(!darkMode))
+    // setTimeout(() => {
+    //     localStorage.setItem('darkMode',JSON.stringify(darkMode))
+    // }, 2000);
+    localStorage.setItem('darkMode',JSON.stringify(darkMode))
  }
  
   

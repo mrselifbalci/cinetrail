@@ -21,7 +21,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
     const [currentRating,setCurrentRating]=useState(0);
     const [reviews,setReviews]=useState([]);
     const [totalReviews,setTotalReviews]=useState(0)
-    const [reviewNumber,setReviewNumber]=useState(4)
+    const [reviewNumber,setReviewNumber]=useState(3)
     const [added,setAdded]=useState(false)
     const {user,setUser}=useContext(UserContext) 
     const [loaded,setLoaded]=useState(false)
@@ -49,12 +49,12 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
     useEffect(() => {  
           axios.get(`${baseUrl}/movie/${movieid}?api_key=${apiKey}`)
           .then(res=>{
-            // console.log(res.data)
+            console.log(res.data)
             setMovie(res.data)
             setCurrentRating((res.data.vote_average)/2) 
           })
           .catch(err=>console.log(err))
-
+ 
 
           axios.get(`${baseUrl}/movie/${movieid}/videos?api_key=${apiKey}&language=en-US`)
           .then(res=>{
@@ -140,7 +140,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
                   <h4>Status: <span>{movie.status}</span></h4>
                   <h4>Runtime: <span>{movie.runtime} min.</span></h4>
                   <h4>Budget: <span>{movie.budget}</span></h4>
-                  <Genres component="details" movie={movie.genres} baseUrl={baseUrl} apiKey={apiKey}/>   
+                  <Genres component="details" movieGenres={movie?.genres} baseUrl={baseUrl} apiKey={apiKey}/>    
                </div> 
             </div>
             <div className="review-container">
@@ -152,7 +152,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
                 }
                 {
                     reviewNumber >= totalReviews 
-                    ? <p className="review-number" onClick={()=>setReviewNumber(3)}><em>End of reviews.</em></p>
+                    ? <p className="review-number" onClick={()=>setReviewNumber(3)}><em>End of reviews.Collapse</em></p>
                     : <p className="review-number" onClick={()=>setReviewNumber(reviewNumber+3)}><em>Read more reviews</em></p>
                 }
                 

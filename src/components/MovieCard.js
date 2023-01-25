@@ -26,7 +26,7 @@ const imageStyle={
     <Link  to={data.id ? `/moviedetails/${data?.id}`:`/moviedetails/${data?.tmdb_id}`} className={cardStyle}>
       <div style={imageStyle}>
           <div className="movie-info-top">
-            <Rating currentRating={rating}/>
+            <Rating movieRating={rating}/>
           </div> 
           <div className="movie-info-bottom">  
             <p>{data?.title}</p>

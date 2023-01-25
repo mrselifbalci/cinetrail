@@ -8,7 +8,7 @@ function SearchResults({movie,setQuery}) {
     const [imageError, setImageError] = useState(false);
 
 
-    const handleNagivation=()=>{
+    const handleNagivation=()=>{ 
       setQuery('')
       navigate(`/moviedetails/${movie.id}`)
     }

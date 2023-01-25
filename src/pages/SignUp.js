@@ -7,8 +7,8 @@ import ClipLoader from "react-spinners/RiseLoader";
 import { Link } from 'react-router-dom';
 
 
-function SignUp({serverUrl}) {
-
+function SignUp({serverUrl}) { 
+ 
     const {token}=useContext(UserContext)
     const {darkMode,setDarkMode}=useContext(ThemeContext)  
     const [email,setEmail]=useState('');
@@ -24,7 +24,7 @@ function SignUp({serverUrl}) {
         margin: "0 auto",
         borderColor: "red",
       };
-    
+     
     
 
     const handleSignUp=(e)=>{

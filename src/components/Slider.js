@@ -10,7 +10,7 @@ import Rating from './Rating';
 function Slider({baseUrl,apiKey}) {
     const [index,setIndex]=useState(0)
     const [upcomingMovies,setUpcomingMovies]=useState([]);
-    const [currentRating,setCurrentRating]=useState(0);
+    const [movieRating,setMovieRating]=useState(0);
 
 
 
@@ -30,7 +30,7 @@ function Slider({baseUrl,apiKey}) {
       axios.get(`${baseUrl}/movie/upcoming?api_key=${apiKey}&page=1`)
       .then(res=>{
         setUpcomingMovies(res.data.results)
-        setCurrentRating((res.data.results[index].vote_average)/2)
+        setMovieRating((res.data.results[index].vote_average)/2)
       })
       .catch(err=>console.log(err))
       
@@ -60,7 +60,7 @@ function Slider({baseUrl,apiKey}) {
           <p className="slider-description">{upcomingMovies[index]?.overview.slice(0,130)}...</p>
           <Genres component="slider" movieGenres={upcomingMovies[index]?.genre_ids} baseUrl={baseUrl} apiKey={apiKey}/>
           <p>Release Date: {upcomingMovies[index]?.release_date}</p>
-          <Rating currentRating={currentRating}/> 
+          <Rating movieRating={movieRating}/>  
           <a  href={`/moviedetails/${upcomingMovies[index]?.id}`} className="see-details">See Details</a>
        </div>
     </div>

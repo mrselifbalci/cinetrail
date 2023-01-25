@@ -1,17 +1,18 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
 
-function Rating({currentRating}) {
+function Rating({movieRating}) {
+  
   return (
     <div className="rating">
               <StarRatings
-                rating={currentRating} 
+                rating={4} 
                 numberOfStars={5}
                 name='rating' 
                 starDimension="15px"
                 starSpacing="1px"
                 starRatedColor="#e50916"
-                starEmptyColor="gray"
+                starEmptyColor="grey"
               /> 
     </div> 
   )

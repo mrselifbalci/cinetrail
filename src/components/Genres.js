@@ -13,9 +13,9 @@ export default function Genres({component,movieGenres,baseUrl,apiKey}) {
     <div className="genre-container">
               <p>Genres:&nbsp;</p>
               {
-                component === "details"  
+               component === "details"  
                 ? movieGenres?.map((name,index)=>{
-                  return <p key={name.id}>{index===movieGenres.length-1 ? `${name.name}`:`${name.name},`}&nbsp;</p>
+                  return <p key={name.id}>{index===movieGenres?.length-1 ? `${name?.name}`:`${name?.name},`}&nbsp;</p>
                 })
                 : movieGenres?.map((id,index)=>{
                   for(let i=0;i<allGenres.length;i++){
@@ -25,6 +25,8 @@ export default function Genres({component,movieGenres,baseUrl,apiKey}) {
                   }
                 }) 
               }
+
+              
               
     </div>
   )

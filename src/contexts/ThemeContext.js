@@ -3,7 +3,7 @@ export const ThemeContext = createContext()
 
 
 
-export default function ThemeContextProvider(props) {
+export default function ThemeContextProvider(props) { 
     const [darkMode,setDarkMode]=useState(true)
 
     useEffect(() => {
