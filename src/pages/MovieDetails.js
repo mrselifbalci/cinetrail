@@ -10,7 +10,7 @@ import {UserContext} from '../contexts/UserContext';
 import {ThemeContext} from '../contexts/ThemeContext';
 
 
-
+ 
 
  
 export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
@@ -23,7 +23,7 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
     const [totalReviews,setTotalReviews]=useState(0)
     const [reviewNumber,setReviewNumber]=useState(3)
     const [added,setAdded]=useState(false)
-    const {user,setUser}=useContext(UserContext) 
+    const {user,token}=useContext(UserContext) 
     const [loaded,setLoaded]=useState(false)
     const {darkMode,setDarkMode}=useContext(ThemeContext)
 
@@ -76,14 +76,20 @@ export default function MovieDetails({baseUrl,apiKey,serverUrl}) {
 
 
     const addToFavorites=()=>{
-      axios.post(`${serverUrl}/favoriteMovies`,{
-        user_id:user._id,
-        movie_id:movie.id
-      })
-      .then(res=>{
-        setAdded(true)
-      })
-      .catch(err=>console.log(err))
+
+      if(!token){
+         alert('Please login to add a movie to your favorites.')
+      }else{
+        axios.post(`${serverUrl}/favoriteMovies`,{
+          user_id:user._id,
+          movie_id:movie.id
+        })
+        .then(res=>{
+          setAdded(true)
+        })
+        .catch(err=>console.log(err))
+      }
+
     }
 
     const removeFromFavorites=()=>{
