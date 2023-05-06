@@ -32,8 +32,7 @@ function Slider({baseUrl,apiKey}) {
         setUpcomingMovies(res.data.results)
         setMovieRating((res.data.results[index].vote_average)/2)
       })
-      .catch(err=>console.log(err))
-      
+      .catch(err=>console.log(err))   
   },[index]) 
   
   const handleRight=()=>{

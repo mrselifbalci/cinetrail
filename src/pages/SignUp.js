@@ -19,12 +19,7 @@ function SignUp({serverUrl}) {
     let [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#e50916");
 
-    const override: CSSProperties = {
-        display: "block",
-        margin: "0 auto",
-        borderColor: "red",
-      };
-     
+ 
     
 
     const handleSignUp=(e)=>{
@@ -79,15 +74,7 @@ function SignUp({serverUrl}) {
             </div>
             {
                 success 
-                ? <ClipLoader
-                        color={color}
-                        loading={loading}
-                        cssOverride={override}
-                        size={20}
-                        aria-label="Loading Spinner"
-                        data-testid="loader"
-                    />
-                // <p className="success-message">Signed up successfully! <a href="/signin">Signin</a></p>
+                ? <p className="success-message">Signed up successfully! <Link to="/signin">Signin</Link></p>
                 : <p className="signin-message">Already have an account? <Link to="/signin">Signin</Link></p>
             }
         </form>

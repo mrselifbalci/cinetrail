@@ -52,7 +52,6 @@ export default function Header({baseUrl,apiKey}) {
             <div className="search-container" >
                 <input  
                  onChange={(e)=>setQuery(e.target.value)} 
-                // onChange={handleSearch}
                  className={ 
                     query && darkMode 
                     ? "search-input input-active"
@@ -63,7 +62,7 @@ export default function Header({baseUrl,apiKey}) {
                     : "search-input"} placeholder="Search movies..."/>
 
                 {
-                    query!==''
+                    query.trim()!==''
                     ? <div className="search-results-container">
                         {
                             searchResults.map(movie=>{
