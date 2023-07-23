@@ -20,6 +20,7 @@ useEffect(() => {
   if(query.trim().length>0){
       axios.get(`${baseUrl}/search/movie?api_key=${apiKey}&query=${query}`)
       .then(res=>{
+        console.log(res.data.results)
          setSearchResults(res.data.results)
       }) 
       .catch(err=>console.log(err));
@@ -39,9 +40,25 @@ const handleTheme = () => {
  } 
   
 
+  const today= new Date()
+  // const day = showdate.getDate()
+  // const month = showdate.getMonth()
+  // const year=showdate.getFullYear()
+//  const fulldate = `Day : ${day} Month:${month} Year:${year}`
+
+ const dateFormatter = new Intl.DateTimeFormat("en", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const fulldate = dateFormatter.format(today)
+
+
   return (
     <div className={darkMode ?"header-container":"header-container header-light" }>
       <Link className="logo" to="/">CineTrail</Link>
+      <p>{fulldate}</p>
       <div className="search-container">
             <input
               value={query}
