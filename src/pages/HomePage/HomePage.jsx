@@ -27,6 +27,12 @@ function HomePage({apiKey,baseUrl}) {
     fetchPopularMovies();
   }, [page]);
 
+
+
+
+
+
+
   useEffect(() => {
     const fetchTopRatedMovies = async () => {
       try {
